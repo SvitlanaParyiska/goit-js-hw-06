@@ -1,19 +1,7 @@
-const categories = document.querySelector("#categories");
+const categories = document.querySelectorAll(".item");
+console.log(`Number of categories: ${categories.length}`);
 
-function totalCategories() {
-  let totalCategs = 0;
-  [...categories.children].forEach((item) => {
-    totalCategs += 1;
-  });
-  return `Number of categories: ${totalCategs}`;
-}
-console.log(totalCategories());
-
-[...categories.children].forEach((item) => {
-  console.log(`Category: ${item.firstElementChild.textContent}`);
-  let totalElements = 0;
-  [...item.lastElementChild.children].forEach((elem) => {
-    totalElements += 1;
-  });
-  console.log(`Elements: ${totalElements}`);
+categories.forEach((elem) => {
+  console.log(`Category: ${elem.firstElementChild.textContent}`);
+  console.log(`Elements: ${elem.lastElementChild.children.length}`);
 });

@@ -5,22 +5,24 @@ function getRandomHexColor() {
 }
 
 const inputBox = document.querySelector("#controls");
+const input = inputBox.firstElementChild; // у инпута нет ни класса ни айди, потому через родителя
+const createBtn = document.querySelector("button[data-create]");
+const destroyBtn = document.querySelector("button[data-destroy]");
 const newBox = document.querySelector("#boxes");
-const divArr = [...inputBox.children];
 
-divArr[1].addEventListener("click", createNumbBoxes);
-divArr[2].addEventListener("click", destroyBoxes);
+createBtn.addEventListener("click", createNumbBoxes);
+destroyBtn.addEventListener("click", destroyBoxes);
 
 function createNumbBoxes() {
-  createBoxes(divArr[0].value);
+  createBoxes(input.value);
 }
 
 function createBoxes(amount) {
   let divStr = "";
-  let width = 20;
-  let height = 20;
+  let size = 30;
   for (let i = 1; i <= amount; i++) {
-    divStr += `<div style="background-color:${getRandomHexColor()}; width:${(width += 10)}px; height:${(height += 10)}px;"></div>`;
+    divStr += `<div style="background-color:${getRandomHexColor()}; width:${size}px; height:${size}px;"></div>`;
+    size += 10;
   }
   console.log(divStr);
   newBox.insertAdjacentHTML("afterbegin", divStr);
